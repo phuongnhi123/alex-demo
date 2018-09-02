@@ -6,7 +6,7 @@ import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages';
 import { Settings } from '../providers';
-
+import firebase from 'firebase';
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>
@@ -46,6 +46,14 @@ export class MyApp {
   ]
 
   constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+    firebase.initializeApp({
+      apiKey: "AIzaSyC5aDAcZsYlxwbngbx3WgreDhatfyN2G6Q",
+      authDomain: "ionic-real-time.firebaseapp.com",
+      databaseURL: "https://ionic-real-time.firebaseio.com",
+      projectId: "ionic-real-time",
+      storageBucket: "ionic-real-time.appspot.com",
+      messagingSenderId: "731314750253"
+      });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
