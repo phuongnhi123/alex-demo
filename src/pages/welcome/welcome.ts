@@ -23,4 +23,7 @@ export class WelcomePage {
   signup() {
     this.navCtrl.push('SignupPage');
   }
+  public phoneLogin() {
+    this.navCtrl.push('AccountKit');
+  }
 }

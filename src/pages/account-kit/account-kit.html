@@ -1,0 +1,14 @@
+<ion-header>
+
+        <ion-navbar>
+          <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+        </ion-navbar>
+      
+      </ion-header>
+      
+      
+      <ion-content>
+            <div>PhoneNumber: {{userInfo?.country_code}}{{userInfo?.phoneNumber}}</div>
+            <button ion-button color="primary" (click)="register()">Register</button>
+      </ion-content>
+      
