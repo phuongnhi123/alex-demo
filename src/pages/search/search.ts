@@ -10,7 +10,7 @@ import { Items } from '../../providers';
   templateUrl: 'search.html'
 })
 export class SearchPage {
-
+  pet ="hot"
   currentItems: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public items: Items) { }
@@ -36,6 +36,9 @@ export class SearchPage {
     this.navCtrl.push('ItemDetailPage', {
       item: item
     });
+  }
+  backHome() {
+    this.navCtrl.pop();
   }
 
 }

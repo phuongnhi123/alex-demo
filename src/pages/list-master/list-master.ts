@@ -51,4 +51,10 @@ export class ListMasterPage {
       item: item
     });
   }
+  searchData() {
+    this.navCtrl.push('SearchPage');
+  }
+  public goSetting(){
+    this.navCtrl.push('SettingsPage');
+  }
 }
