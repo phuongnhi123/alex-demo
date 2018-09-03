@@ -40,5 +40,10 @@ export class SearchPage {
   backHome() {
     this.navCtrl.pop();
   }
-
+  public goSetting(){
+    this.navCtrl.push('SettingsPage');
+  }
+  public goAdd() {
+    this.navCtrl.push('ItemCreatePage');
+  }
 }
