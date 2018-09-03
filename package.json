@@ -23,6 +23,7 @@
     "@ionic-native/camera": "4.3.3",
     "@ionic-native/core": "~4.12.0",
     "@ionic-native/flashlight": "^4.12.2",
+    "@ionic-native/gyroscope": "^4.12.2",
     "@ionic-native/splash-screen": "~4.12.0",
     "@ionic-native/status-bar": "~4.12.0",
     "@ionic/storage": "2.1.3",
@@ -35,6 +36,7 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-flashlight": "^3.2.0",
+    "cordova-plugin-gyroscope": "^0.1.4",
     "cordova-plugin-ionic": "^5.1.3",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
     "cordova-plugin-ionic-webview": "^2.1.0",
@@ -77,7 +79,8 @@
         "API_VERSION": "v1.1"
       },
       "cordova-plugin-camera": {},
-      "cordova-plugin-flashlight": {}
+      "cordova-plugin-flashlight": {},
+      "cordova-plugin-gyroscope": {}
     },
     "platforms": [
       "android"

@@ -13,6 +13,7 @@ import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { Flashlight } from '@ionic-native/flashlight';
+import { Gyroscope } from '@ionic-native/gyroscope';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -64,6 +65,7 @@ export function provideSettings(storage: Storage) {
     SplashScreen,
     StatusBar,
     Flashlight,
+    Gyroscope,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

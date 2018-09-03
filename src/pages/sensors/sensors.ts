@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Flashlight } from '@ionic-native/flashlight';
+import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
+
 @IonicPage()
 @Component({
   selector: 'page-sensors',
@@ -8,8 +10,14 @@ import { Flashlight } from '@ionic-native/flashlight';
 })
 export class SensorsPage {
     _isTurn  =  false;
-  constructor(public navCtrl: NavController,private flashlight: Flashlight) {
-  }
+    orientation: GyroscopeOrientation ;
+  constructor(public navCtrl: NavController,private flashlight: Flashlight, private gyroscope: Gyroscope) {
+    this.gyroscope.watch()
+    .subscribe((orientation: GyroscopeOrientation) => {
+       console.log(orientation.x, orientation.y, orientation.z, orientation.timestamp);
+       this.orientation = orientation;
+    });  
+}
   set isTurn(value: boolean) {
             this._isTurn = value ;
             if(this._isTurn) {
