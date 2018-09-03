@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import firebase from 'firebase';
 @IonicPage()
@@ -13,8 +13,8 @@ export class UploadPage {
   public myPhotosRef: any;
   public myPhoto: any;
   public myPhotoURL: any;
-
-  constructor(public navCtrl: NavController, public camera: Camera) {
+  public loading: any ;
+  constructor(public navCtrl: NavController, public camera: Camera, public loadingCtrl: LoadingController) {
     this.myPhotosRef = firebase.storage().ref('/Photos/');
   }
 
@@ -48,9 +48,15 @@ export class UploadPage {
   }
 
   private uploadPhoto(): void {
+     this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Please wait...'
+    });
+    this.loading.present();
     this.myPhotosRef.child(this.generateUUID()).child('myPhoto.png')
       .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
       .then((savedPicture) => {
+        this.loading.dismiss();
         this.myPhotoURL = savedPicture.downloadURL;
       });
   }

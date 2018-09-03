@@ -4,5 +4,60 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    xxxx chat
+<!--
+Inspired by https://dribbble.com/supahfunk
+-->
+<section class="avenue-messenger">
+        <div class="menu">
+         <div class="items"><span>
+           <a href="#" title="Minimize">&mdash;</a><br>
+      <!--     
+           <a href="">enter email</a><br>
+           <a href="">email transcript</a><br>-->
+           <a href="#" title="End Chat">&#10005;</a>
+           
+           </span></div>
+          <div class="button">...</div>
+        </div>
+        <div class="agent-face">
+          <div class="half">
+           <img class="agent circle" src="https://cdn0.iconfinder.com/data/icons/chat-2/100/Chat-13-512.png" alt="Jesse Tino"></div>
+        </div>
+      <div class="chat">
+        <div class="chat-title">
+          <h1>Room</h1>
+        </div>
+        <div class="messages">
+          <div class="messages-content">
+                <ion-content #content  id="content" >
+              <div class="messages-content mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                  <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
+                    <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+                        <ng-container *ngFor="let message of messages" >
+                                  <div *ngIf="message.nombre !== userName" class="message new">
+                                        <figure class="avatar"><img src="https://cdn4.tgdd.vn/Products/Images/1784/60977/duolingo-icon-1.png"></figure>
+                                        {{ 'Name : ' + message.nombre }}  <br/>
+                                        {{message.mensaje}}
+                                        <div class="timestamp">11:42</div>
+                                        <div class="checkmark-sent-delivered">✓</div><div class="checkmark-read">✓</div></div>
+                                        <div   *ngIf="message.nombre === userName" class="message message-personal new">
+                                                {{message.mensaje}}
+                                            <div class="timestamp">11:43</div><div class="checkmark-sent-delivered">✓</div>
+                                        <div class="checkmark-read">✓</div>
+                                        </div>
+                        </ng-container> 
+                     <div  style="  border: 1px solid white;  background: white;" class="message new" id="content-end"> &nbsp;</div>
+                  </div>
+                </div>
+                </div>
+                </ion-content>
+            </div>
+        </div>
+        <div class="message-box">
+          <textarea type="text" class="message-input" placeholder="Type message..." [(ngModel)]="message" ></textarea>
+          <button type="submit" class="message-submit" (click)="sendMessage()" >Send</button>
+        </div>
+      </div>
+      <!--<div class="bg"></div>-->
+</section>
 </ion-content>

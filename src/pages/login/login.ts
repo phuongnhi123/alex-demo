@@ -35,9 +35,18 @@ export class LoginPage {
   // Attempt to login in through our User service
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
+      if(resp.length === 0 ) {
+        let toast = this.toastCtrl.create({
+          message: 'Username or password does not incorrect' ,
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      } else {
+        this.navCtrl.push(MainPage);
+      }
     }, (err) => {
-      this.navCtrl.push(MainPage);
+      // this.navCtrl.push(MainPage);
       // Unable to log in
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,

@@ -1,8 +1,8 @@
 import 'rxjs/add/operator/toPromise';
-
 import { Injectable } from '@angular/core';
 
 import { Api } from '../api/api';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Most apps have the concept of a User. This is a simple provider
@@ -25,7 +25,10 @@ import { Api } from '../api/api';
  */
 @Injectable()
 export class User {
-  _user: any;
+  list: Account[] = [{name: "Alex Huynh", email: "alex", password: "123"},
+          {name: "Ginny nguyen", email: "ginny", password: "123"},
+          {name: "Tyler", email: "tyler", password: "123"},]
+  _user: Account;
 
   constructor(public api: Api) { }
 
@@ -33,39 +36,28 @@ export class User {
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
-  login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
-
-    return seq;
+  login(accountInfo: Account): Observable<Account[]> {
+    console.log(accountInfo)
+    const temp =  this.list.filter( r => r.email === accountInfo.email && r.password === r.password);
+       if( temp.length >= 0  )  {
+        this._loggedIn(accountInfo);
+       } 
+    return  Observable.of(temp) ;
   }
 
   /**
    * Send a POST request to our signup endpoint with the data
    * the user entered on the form.
    */
-  signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
-
-    return seq;
+  signup(accountInfo: Account): Observable<Account> {
+    const temp =  this.list.filter( r => r.email === accountInfo.email);
+     if( temp.length > 0) {
+      return  Observable.of(null);
+     }else{
+      this.list.push(accountInfo);
+      this._loggedIn(accountInfo);
+      return  Observable.of(accountInfo);
+     }
   }
 
   /**
@@ -79,6 +71,12 @@ export class User {
    * Process a login/signup response to store user data
    */
   _loggedIn(resp) {
-    this._user = resp.user;
+    this._user = resp;
   }
+  
+}
+export class Account {
+  name?: string ;
+  email?: string;
+  password?: string 
 }

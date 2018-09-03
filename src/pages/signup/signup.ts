@@ -36,10 +36,20 @@ export class SignupPage {
   doSignup() {
     // Attempt to login in through our User service
     this.user.signup(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
+      if (resp === null) {
+        // Unable to sign up
+        let toast = this.toastCtrl.create({
+          message:  'The username has already been used',
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
+      } else { 
+        this.navCtrl.push(MainPage);
+      }
     }, (err) => {
 
-      this.navCtrl.push(MainPage);
+      // this.navCtrl.push(MainPage);
 
       // Unable to sign up
       let toast = this.toastCtrl.create({
