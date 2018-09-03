@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, LoadingController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import firebase from 'firebase';
+import { User } from '../../providers';
+import { Messages } from '../chats/chats';
 @IonicPage()
 @Component({
   selector: 'page-upload',
@@ -14,7 +16,8 @@ export class UploadPage {
   public myPhoto: any;
   public myPhotoURL: any;
   public loading: any ;
-  constructor(public navCtrl: NavController, public camera: Camera, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public camera: Camera, public loadingCtrl: LoadingController,
+  public user: User) {
     this.myPhotosRef = firebase.storage().ref('/Photos/');
   }
 
@@ -58,9 +61,12 @@ export class UploadPage {
       .then((savedPicture) => {
         this.loading.dismiss();
         this.myPhotoURL = savedPicture.downloadURL;
+        const messagesRef = firebase.database().ref().child("mensajes");
+        const msg: Messages = { time: new Date().getTime(), mensaje: { isLink: true, data:  this.myPhotoURL  } };
+        messagesRef.push({ mensaje: JSON.stringify(msg), nombre: this.user._user.email });
+      setTimeout( r =>   this.navCtrl.pop() ,1000  );
       });
   }
-
   private generateUUID(): any {
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {

@@ -17,7 +17,7 @@ Inspired by https://dribbble.com/supahfunk
            <a href="#" title="End Chat">&#10005;</a>
            
            </span></div>
-          <div class="button">...</div>
+          <div (click)="goUpload()" class="button">...</div>
         </div>
         <div class="agent-face">
           <div class="half">
@@ -34,15 +34,27 @@ Inspired by https://dribbble.com/supahfunk
                   <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: none;">
                     <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px;" dir="ltr">
                         <ng-container *ngFor="let message of messages" >
-                                  <div *ngIf="message.nombre !== userName" class="message new">
+                                  <div *ngIf="message.userName !== userName" class="message new">
                                         <figure class="avatar"><img src="https://cdn4.tgdd.vn/Products/Images/1784/60977/duolingo-icon-1.png"></figure>
-                                        {{ 'Name : ' + message.nombre }}  <br/>
-                                        {{message.mensaje}}
-                                        <div class="timestamp">11:42</div>
+                                       <ng-container *ngIf="!message.messages.mensaje.isLink">
+                                            {{ 'Name : ' + message.userName }}  <br/>
+                                            {{message.messages.mensaje.data}}
+                                       </ng-container>
+                                       <ng-container *ngIf="message.messages.mensaje.isLink">
+                                            <img alt="Jesse Tino" class="agent " src="{{message.messages.mensaje.data}}"/>
+                                        </ng-container>
+                                       
+                                        <div class="timestamp">{{message.messages.time | date: 'h:mm a'}}</div>
                                         <div class="checkmark-sent-delivered">✓</div><div class="checkmark-read">✓</div></div>
-                                        <div   *ngIf="message.nombre === userName" class="message message-personal new">
-                                                {{message.mensaje}}
-                                            <div class="timestamp">11:43</div><div class="checkmark-sent-delivered">✓</div>
+                                        <div   *ngIf="message.userName === userName" class="message message-personal new">
+                                                <ng-container *ngIf="!message.messages.mensaje.isLink">
+                                                        {{message.messages.mensaje.data}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="message.messages.mensaje.isLink">
+                                                            <img alt="Jesse Tino" class="agent " src="{{message.messages.mensaje.data}}"/>
+                                                     </ng-container> 
+                                           
+                                            <div class="timestamp">{{message.messages.time | date: 'h:mm a'}}</div><div class="checkmark-sent-delivered">✓</div>
                                         <div class="checkmark-read">✓</div>
                                         </div>
                         </ng-container> 
