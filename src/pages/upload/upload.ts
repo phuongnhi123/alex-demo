@@ -64,7 +64,9 @@ export class UploadPage {
         const messagesRef = firebase.database().ref().child("mensajes");
         const msg: Messages = { time: new Date().getTime(), mensaje: { isLink: true, data:  this.myPhotoURL  } };
         messagesRef.push({ mensaje: JSON.stringify(msg), nombre: this.user._user.email });
-      setTimeout( r =>   this.navCtrl.pop() ,1000  );
+       if(this.navCtrl.canGoBack()) {
+        setTimeout( r =>   this.navCtrl.pop() ,3000  );
+       }
       });
   }
   private generateUUID(): any {
