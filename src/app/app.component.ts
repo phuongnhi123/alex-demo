@@ -11,16 +11,105 @@ import firebase from 'firebase';
   template: `<ion-menu [content]="content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Pages</ion-title>
+        <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
+    <div class="app-wrapp">
+    <div class="app-container">
+    <!-- @main page view -->
+    <div class="view-main">
+        <div class="header-wrapp">
+            <div class="app-detail">
+                <div>
+                    <img src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.0-1/p50x50/30705194_173122723501319_2362293048580243456_n.jpg?_nc_cat=0&oh=7d7422a807b17b87426c3ead62356900&oe=5BD22F44" alt="">
+                </div>
+                <div>Alex Huynh</div>
+                <div class="status"> 098 177 30 84 </div>
+            </div>
+            <div class="wave-wrapp">
+                <svg class="wave" xmlns="http://www.w3.org/2000/svg"  viewBox="0 24 150 28"   preserveAspectRatio="none">
+                    <defs>
+                        <path id="gentle-wave" d="m -160,44.4 c 30,0 58,-18 87.7,-18 30.3,0 58.3,18 87.3,18 30,0 58,-18 88,-18 30,0 58,18 88,18 l 0,34.5 -351,0 z" />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="50" y="0" fill="rgba(255, 255, 255, 0.48)"/>
+                        <use xlink:href="#gentle-wave" x="50" y="3" fill="rgba(255, 255, 255, 0.78)"/>
+                        <use xlink:href="#gentle-wave" x="50" y="6" fill="rgba(255, 255, 255, 0.8)"/>  
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <div class="content-wrapp">
+  
+            <div id="master-nav-items" data-viewport="true">
+              <div id="item-4" class="active">
+                <div class="profile-setting">
+                    <div class="touch-y" style="transform: translateY(-2px);">
+                        <div class="information">
+                            <div class="public">
+                                <p>
+                                    PUBLIC INFORMATION
+                                </p>
+                                <div class="form-group">
+                                    <span>
+                                        <i class="material-icons">assignment_ind</i>
+                                    </span>
+                                    <input type="text" placeholder="USERNAME" value="@Alex.huynh">
+                                </div>
+                                <div class="form-group">
+                                    <span>
+                                        <i class="material-icons">face</i>
+                                    </span>
+                                    <input type="text" placeholder="NAME" value="Alex Huynh">
+                                </div>
+                                <div class="form-group">
+                                    <span>
+                                        <i class="material-icons">public</i>
+                                    </span>
+                                    <input type="text" placeholder="WEB SITE">
+                                </div>
+                                <div class="form-group h-80">
+                                    <span>
+                                        <i class="material-icons">info</i>
+                                    </span>
+                                    <textarea placeholder="BIO" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="private">
+                                <p>
+                                    PRIVATE INFORMATION
+                                </p>
+                                <div class="form-group">
+                                    <span>
+                                        <i class="material-icons">local_post_office</i>
+                                    </span>
+                                    <input type="text" placeholder="EMAIL" value="k40cntt@gmail.com">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+         
+        </div>
+    </div>
+    <!-- @send message view -->
+  
+    </div>   
+    </div>
+<!-- <ion-list>
+<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+  <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+    <ion-icon slot="start" [name]="p.icon"></ion-icon>
+    <ion-label>
+      {{p.title}}
+    </ion-label>
+  </ion-item>
+</ion-menu-toggle>
+</ion-list> -->
     </ion-content>
 
   </ion-menu>
