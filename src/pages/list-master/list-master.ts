@@ -57,4 +57,7 @@ export class ListMasterPage {
   public goSetting(){
     this.navCtrl.push('SettingsPage');
   }
+  public goToAdd() {
+    this.navCtrl.push('ItemCreatePage');
+  }
 }

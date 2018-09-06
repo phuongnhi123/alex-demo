@@ -10,7 +10,7 @@ import firebase from 'firebase';
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar >
         <ion-title>Menu</ion-title>
       </ion-toolbar>
     </ion-header>
