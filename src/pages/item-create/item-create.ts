@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
+import { Items } from '../../mocks/providers/items';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class ItemCreatePage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
+  constructor(public items: Items,public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder, public camera: Camera) {
     this.form = formBuilder.group({
       profilePic: [''],
       name: ['', Validators.required],
@@ -78,6 +79,7 @@ export class ItemCreatePage {
    */
   done() {
     if (!this.form.valid) { return; }
+    this.items.add(this.form.value);
     this.viewCtrl.dismiss(this.form.value);
   }
 }
